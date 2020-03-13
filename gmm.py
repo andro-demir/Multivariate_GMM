@@ -121,7 +121,7 @@ def density_plot(data, mu, cov, n=100):
     '''
     :param data: type: numpy.array(num_samples x features)
     :param mu: type: torch.Tensor (features)
-    :param var: type: torch.Tensor (features)
+    :param cov: type: torch.Tensor (features)
     :param n: number of samples to generate, type: int
     :return likelihoods: type: torch.Tensor(num_samples, features)
     '''
