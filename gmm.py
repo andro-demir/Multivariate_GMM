@@ -117,7 +117,7 @@ class GMM:
         return self.mu, self.cov, posteriors, self.likelihoods
 
 
-def density_plot(data, mu, cov, k, n=100):
+def density_plot(data, mu, cov, n=100):
     '''
     :param data: type: numpy.array(num_samples x features)
     :param mu: type: torch.Tensor (features)
@@ -148,6 +148,7 @@ def density_plot(data, mu, cov, k, n=100):
     samples = np.concatenate([xx.reshape(-1, 1), yy.reshape(-1, 1)], axis=1)
     samples = torch.from_numpy(samples).double()
     # compute the densities under each mixture
+    k = len(mu)
     likelihoods = torch.zeros((n**2, k)).double()
     for i, data in enumerate(samples):
         for j in range(k):
@@ -188,7 +189,7 @@ def main():
     plt.show()
     gmm = GMM(x, num_clusters=3, num_iterations=50)
     mu, cov, posteriors, likelihoods = gmm.convergence()
-    density_plot(x.numpy(), mu, cov, gmm.k)
+    density_plot(x.numpy(), mu, cov)
 
 
 if __name__ == "__main__":
